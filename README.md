@@ -1,4 +1,4 @@
-# Palworld Server Monitoring
+# Palworld Server Management
 
 The scripts in this repository will help you mitigate the memory leaking problem of Palworld on Linux server and do auto backup for you.
 
@@ -20,26 +20,39 @@ sudo systemctl restart palw.service				# restart server
 sudo systemctl status palw.service				# check log and status
 ```
 
+## Mitigate Memory Leaking Problem
 
+### Modify the Service
 
-## Mitigate the Memory Leaking Problem
+Set the following entries under `[Service]` in the service file (it's already modified in repo):
 
-`monitor.sh` will try to restart the service every time the server have taken up more memory than the threshold defined in the script.
-
-Change the values inside `monitor.sh` to your own, and edit `crontab` of root user by running
-
-```bash
-sudo crontab -e
+```
+RuntimeMaxSec=24h
+MemoryMax=14G
+Restart=always
 ```
 
-Then add the following job
+Note that you may change the values according to your own configuration.
+
+### Create a Swap Area
+
+We can create a swap area using the following commands.
 
 ```bash
-# m h  dom mon dow   command
-*/5 * * * * /home/steam/scripts/monitor.sh
+sudo fallocate -l 16G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+echo "/swapfile none swap sw 0 0" | sudo tee -a /etc/fstab
 ```
 
+You can change the size and name of the swap file according to your own favor.
 
+After executing the above commands, use the following command to view the newly created swap partition.
+
+```bash
+swapon --show
+```
 
 ## Auto Backup
 

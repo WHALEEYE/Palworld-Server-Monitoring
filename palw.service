@@ -7,7 +7,9 @@ User=steam
 Group=steam
 Type=simple
 ExecStart=/home/steam/Steam/steamapps/common/PalServer/PalServer.sh
-Restart=on-failure
+Restart=always
+RuntimeMaxSec=24h
+MemoryMax=14G
 
 [Install]
 WantedBy=multi-user.target
