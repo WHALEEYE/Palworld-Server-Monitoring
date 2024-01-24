@@ -1,0 +1,13 @@
+[Unit]
+Description=Palworld Server
+After=network.target
+
+[Service]
+User=steam
+Group=steam
+Type=simple
+ExecStart=/home/steam/Steam/steamapps/common/PalServer/PalServer.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
