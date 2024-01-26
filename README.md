@@ -71,3 +71,11 @@ Then add the following job
 0 */2 * * * /home/steam/scripts/backup.sh
 ```
 
+Also, you can add the following entry in the service file to auto backup when server stops.
+
+
+```bash
+ExecStopPost=/home/steam/scripts/backup.sh -cold
+```
+
+`-cold` adds an extra postfix to the backup file name to indicate that the backup is triggered by server stop.
