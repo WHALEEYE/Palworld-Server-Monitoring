@@ -8,9 +8,10 @@ Group=steam
 Type=simple
 ExecStart=/home/steam/Steam/steamapps/common/PalServer/PalServer.sh
 Restart=always
-RuntimeMaxSec=12h
+RuntimeMaxSec=4h
+RestartSec=20s
 MemoryMax=12G
-ExecStopPost=/home/steam/scripts/backup.sh -cold
+ExecStopPost=/bin/sh -c 'sleep 15; /home/steam/scripts/backup.sh -cold'
 
 [Install]
 WantedBy=multi-user.target
