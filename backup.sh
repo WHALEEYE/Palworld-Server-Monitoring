@@ -5,7 +5,7 @@ SAVE_DIR="/home/steam/Steam/steamapps/common/PalServer/Pal/Saved/SaveGames/0/9A7
 BACKUP_DIR="$SAVE_DIR/backup"
 LOG_FILE="/home/steam/logs/backup.log"
 CURRENT_TIME=$(date '+%Y-%m-%d %H:%M:%S')
-BACKUP_FILE=$(date '+%Y-%m-%d-%H-%M-%S').tar.gz
+BACKUP_FILE=$(date '+%Y-%m-%d-%H-%M-%S')$1.tar.gz
 
 # Backup files
 cd $SAVE_DIR && mkdir -p ./backup && tar -czvf ./backup/$BACKUP_FILE ./Level.sav ./LevelMeta.sav ./Players/*

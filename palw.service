@@ -8,8 +8,9 @@ Group=steam
 Type=simple
 ExecStart=/home/steam/Steam/steamapps/common/PalServer/PalServer.sh
 Restart=always
-RuntimeMaxSec=24h
-MemoryMax=14G
+RuntimeMaxSec=12h
+MemoryMax=12G
+ExecStopPost=/home/steam/scripts/backup.sh -cold
 
 [Install]
 WantedBy=multi-user.target
